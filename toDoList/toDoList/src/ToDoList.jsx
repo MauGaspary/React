@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 
 function ToDoList() {
-    const [tasks, setTasks] = useState([
-        "Eat breakfast",
-        "Go to work",
-        "Feed the cat",
-    ]);
+    const [tasks, setTasks] = useState([]);
 
     const [newTask, setNewTask] = useState("");
 
@@ -13,13 +9,38 @@ function ToDoList() {
         setNewTask(event.target.value);
     }
 
-    function addTask() {}
+    function addTask() {
 
-    function deleteTask(index) {}
+        if(newTask !== "") {
+        setTasks(t => [...tasks, newTask]); // ...tasks copia o array tasks e cria um novo mantendo os dados antigos
+        setNewTask("");
+        }
+    }
 
-    function moveTaskUp(index) {}
+    function deleteTask(index) {
+        const updatedTasks = tasks.filter((task, i) => i !== index); // filter cria um novo array com os elementos que passam no teste da função fornecida
+        setTasks(updatedTasks);
+    }
 
-    function moveTaskDown(index) {}
+    function moveTaskUp(index) {
+        
+        if (index > 0){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index - 1]] = 
+            [updatedTasks[index - 1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
+    }
+
+    function moveTaskDown(index) {
+
+        if (index < tasks.lenght - 1){
+            const updatedTasks = [...tasks];
+            [updatedTasks[index], updatedTasks[index - 1]] = 
+            [updatedTasks[index - 1], updatedTasks[index]];
+            setTasks(updatedTasks);
+        }
+    }
 
     return (
         <div className="to-do-list">
