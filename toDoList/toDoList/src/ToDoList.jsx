@@ -34,10 +34,10 @@ function ToDoList() {
 
     function moveTaskDown(index) {
 
-        if (index < tasks.lenght - 1){
+        if (index < tasks.length - 1){
             const updatedTasks = [...tasks];
-            [updatedTasks[index], updatedTasks[index - 1]] = 
-            [updatedTasks[index - 1], updatedTasks[index]];
+            [updatedTasks[index], updatedTasks[index + 1]] = 
+            [updatedTasks[index + 1], updatedTasks[index]];
             setTasks(updatedTasks);
         }
     }
